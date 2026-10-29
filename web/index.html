@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Papai Noel Infinito</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="neve" aria-hidden="true"></canvas>
+
+  <header class="topo">
+    <div class="marca">
+      <span class="logo">🎅</span>
+      <div>
+        <h1>Papai Noel <span class="inf">∞</span></h1>
+        <p class="sub">Problema do Papai Noel em ciclo infinito · C11 + pthreads (1 mutex, 3 variáveis de condição)</p>
+      </div>
+    </div>
+    <div class="status">
+      <span id="pill" class="pill parado">desconectado</span>
+      <span class="relogio" id="relogio">00:00.0</span>
+    </div>
+  </header>
+
+  <section class="controles" aria-label="Controles">
+    <div class="grupo-btn">
+      <button id="btn-iniciar" class="btn primario">↻ Reiniciar</button>
+      <button id="btn-pausar" class="btn">⏸ Pausar</button>
+      <button id="btn-parar" class="btn perigo">■ Parar</button>
+    </div>
+    <div class="velocidade" role="group" aria-label="Velocidade">
+      <span class="rot">Velocidade</span>
+      <div id="vel" class="seg"></div>
+    </div>
+    <details class="params">
+      <summary>Parâmetros</summary>
+      <form id="form-params">
+        <label>Elfos <input name="elfos" type="number" min="3" max="60" value="10"></label>
+        <label>Férias das renas (ms) <span class="par"><input name="ferias_min" type="number" min="0" value="5000"><input name="ferias_max" type="number" min="0" value="10000"></span></label>
+        <label>Trabalho dos elfos (ms) <span class="par"><input name="trabalho_min" type="number" min="0" value="3000"><input name="trabalho_max" type="number" min="0" value="12000"></span></label>
+        <label>Ajuda (ms) <input name="ajuda" type="number" min="0" value="1200"></label>
+        <label>Preparo do trenó (ms) <input name="preparo" type="number" min="0" value="1000"></label>
+        <label>Viagem (ms) <input name="viagem" type="number" min="0" value="3000"></label>
+        <label>Semente <input name="semente" type="number" min="0" value="42"></label>
+        <button type="submit" class="btn primario">Aplicar e reiniciar</button>
+      </form>
+    </details>
+  </section>
+
+  <div class="ceu" id="ceu" aria-hidden="true">
+    <div class="treno" id="treno">🎅🛷<span class="tracao">🦌🦌🦌🦌🦌🦌🦌🦌🦌</span></div>
+    <span class="lua">🌙</span>
+  </div>
+
+  <main class="palco">
+    <section class="painel oficina">
+      <header><h2>Oficina dos elfos</h2><span class="contagem" id="cont-elfos"></span></header>
+      <div class="legenda">
+        <span><i class="dot T"></i>trabalhando</span>
+        <span><i class="dot E"></i>esperando grupo</span>
+        <span><i class="dot F"></i>na fila</span>
+        <span><i class="dot A"></i>sendo ajudado</span>
+      </div>
+      <div class="elfos" id="elfos"></div>
+      <div class="sub-bloco">
+        <h3>Grupo em formação</h3>
+        <div class="slots" id="slots"></div>
+      </div>
+      <div class="sub-bloco">
+        <h3>Fila do Noel <span class="muted" id="fila-n"></span></h3>
+        <div class="fila" id="fila"><span class="vazio">vazia</span></div>
+      </div>
+    </section>
+
+    <section class="painel casa">
+      <header><h2>Casa do Noel</h2></header>
+      <div class="noel" id="noel">
+        <div class="aura"></div>
+        <div class="noel-emoji" id="noel-emoji">🎅</div>
+        <div class="zzz" id="zzz">z z z</div>
+      </div>
+      <div class="noel-estado" id="noel-estado">—</div>
+      <div class="noel-detalhe" id="noel-detalhe"></div>
+      <div class="regra">
+        <b>Regras:</b> Noel dorme até haver <b>9 renas</b> ou um grupo de <b>3 elfos</b>.
+        Se os dois estiverem prontos, as <b>renas têm prioridade</b>. Durante a viagem os elfos acumulam na fila.
+      </div>
+    </section>
+
+    <section class="painel estabulo">
+      <header><h2>Estábulo</h2><span class="contagem" id="cont-renas">0/9</span></header>
+      <div class="barra"><div id="barra-renas"></div></div>
+      <div class="renas" id="renas"></div>
+      <div class="legenda">
+        <span><i class="dot RF"></i>férias</span>
+        <span><i class="dot RE"></i>no estábulo</span>
+        <span><i class="dot RA"></i>atrelada</span>
+        <span><i class="dot RV"></i>viajando</span>
+      </div>
+    </section>
+  </main>
+
+  <section class="metricas" aria-label="Métricas">
+    <div class="card"><span class="k">Viagens</span><span class="v" id="m-viagens">0</span></div>
+    <div class="card"><span class="k">Grupos atendidos</span><span class="v" id="m-grupos">0</span></div>
+    <div class="card"><span class="k">Pedidos de elfos</span><span class="v" id="m-pedidos">0</span></div>
+    <div class="card"><span class="k">Espera dos elfos</span><span class="v" id="m-espera">—</span><span class="d" id="m-espera-max"></span></div>
+    <div class="card"><span class="k">Resposta às renas</span><span class="v" id="m-resp">—</span><span class="d" id="m-resp-max"></span></div>
+    <div class="card"><span class="k">Utilização do Noel</span><span class="v" id="m-util">0%</span></div>
+    <div class="card"><span class="k">Disputas (renas venceram)</span><span class="v" id="m-disp">0</span></div>
+    <div class="card"><span class="k">Violações</span><span class="v ok" id="m-viol">0</span><span class="d">invariantes</span></div>
+  </section>
+
+  <section class="inferior">
+    <div class="painel grafico">
+      <header><h2>Espera de cada elfo até o início da ajuda</h2><span class="muted" id="graf-n"></span></header>
+      <canvas id="graf" height="180"></canvas>
+      <p class="nota">Cada ponto é um elfo atendido (ms virtuais). Picos aparecem quando a fila acumula durante uma viagem.</p>
+    </div>
+    <div class="painel log">
+      <header>
+        <h2>Eventos</h2>
+        <div class="filtros">
+          <label><input type="checkbox" data-f="noel" checked> Noel</label>
+          <label><input type="checkbox" data-f="elfo" checked> Elfos</label>
+          <label><input type="checkbox" data-f="rena" checked> Renas</label>
+        </div>
+      </header>
+      <ol id="log"></ol>
+    </div>
+  </section>
+
+  <footer class="rodape">Durações em tempo virtual: a velocidade e a pausa atuam no relógio da simulação em C, não só na animação.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
