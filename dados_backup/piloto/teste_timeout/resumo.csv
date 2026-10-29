@@ -1,0 +1,2 @@
+tema,configuracao,conjunto,repeticao,semente,elfos,renas_ms,T_ms,previstos,concluidos,vazao_pedidos_s,espera_media_ms,espera_p95_ms,espera_max_ms,n_amostras,resposta_renas_ms,violacoes_prioridade,violacoes_regras,utilizacao_noel,status
+11_papai_noel,E06_R10,referencia,1,0,6,10,5.076,6,0,0.00,N/A,N/A,N/A,0,N/A,0,0,0.0000,timeout

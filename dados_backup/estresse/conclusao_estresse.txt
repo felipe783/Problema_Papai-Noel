@@ -1,0 +1,2 @@
+estresse: ok = 300 de 300
+estresse: maior T = 35.688 ms

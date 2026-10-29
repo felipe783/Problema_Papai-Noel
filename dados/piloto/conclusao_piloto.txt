@@ -1,0 +1,1 @@
+piloto: 15 execuções, maior T = 35.393 ms

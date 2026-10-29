@@ -1,0 +1,55 @@
+>> compilando: gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao
+>> piloto (3 execuções por configuração, timeout 2000 ms)
+>> piloto: teste do mecanismo de timeout (--timeout-ms 5)
+E06_R10_rep1: status=timeout T=5.076 ms concluidos=0/6 vazao=0.00 pedidos/s espera_p95=-1.000 ms resposta_renas=-1.000 ms viol_prio=0 viol_regras=0 decisoes=0 (com disputa: 0) util_noel=0.0%
+   (código de saída 2: --elfos 6 --renas-ms 10 --rep 1 --semente 0 --timeout-ms 5 --out /home/fpmulinari/Downloads/Faculdade/Problema_Papai-Noel/tema11_papai_noel/dados/piloto/teste_timeout/)
+piloto: 15 execuções, maior T = 35.211 ms
+>> matriz: 5 configurações x 5 repetições
+E06_R10_rep1: status=ok T=21.362 ms concluidos=6/6 vazao=280.88 pedidos/s espera_p95=5.205 ms resposta_renas=0.017 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=52.5%
+E03_R10_rep1: status=ok T=18.266 ms concluidos=3/3 vazao=164.24 pedidos/s espera_p95=5.111 ms resposta_renas=0.020 ms viol_prio=0 viol_regras=0 decisoes=2 (com disputa: 0) util_noel=44.6%
+E12_R10_rep1: status=ok T=27.560 ms concluidos=12/12 vazao=435.41 pedidos/s espera_p95=5.409 ms resposta_renas=0.037 ms viol_prio=0 viol_regras=0 decisoes=5 (com disputa: 0) util_noel=63.0%
+E06_R05_rep1: status=ok T=18.265 ms concluidos=6/6 vazao=328.51 pedidos/s espera_p95=2.109 ms resposta_renas=0.017 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=61.4%
+E06_R30_rep1: status=ok T=35.254 ms concluidos=6/6 vazao=170.20 pedidos/s espera_p95=2.110 ms resposta_renas=0.045 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=31.8%
+E06_R10_rep2: status=ok T=21.410 ms concluidos=6/6 vazao=280.24 pedidos/s espera_p95=5.252 ms resposta_renas=0.034 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=52.4%
+E03_R10_rep2: status=ok T=18.754 ms concluidos=3/3 vazao=159.97 pedidos/s espera_p95=5.560 ms resposta_renas=0.030 ms viol_prio=0 viol_regras=0 decisoes=2 (com disputa: 0) util_noel=45.7%
+E12_R10_rep2: status=ok T=27.510 ms concluidos=12/12 vazao=436.20 pedidos/s espera_p95=5.358 ms resposta_renas=0.008 ms viol_prio=0 viol_regras=0 decisoes=5 (com disputa: 0) util_noel=63.1%
+E06_R05_rep2: status=ok T=18.252 ms concluidos=6/6 vazao=328.74 pedidos/s espera_p95=2.101 ms resposta_renas=0.032 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=61.5%
+E06_R30_rep2: status=ok T=35.305 ms concluidos=6/6 vazao=169.95 pedidos/s espera_p95=2.122 ms resposta_renas=0.019 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=31.8%
+E06_R10_rep3: status=ok T=21.335 ms concluidos=6/6 vazao=281.23 pedidos/s espera_p95=5.185 ms resposta_renas=0.023 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=52.5%
+E03_R10_rep3: status=ok T=18.258 ms concluidos=3/3 vazao=164.31 pedidos/s espera_p95=5.128 ms resposta_renas=0.026 ms viol_prio=0 viol_regras=0 decisoes=2 (com disputa: 0) util_noel=44.6%
+E12_R10_rep3: status=ok T=27.463 ms concluidos=12/12 vazao=436.95 pedidos/s espera_p95=5.324 ms resposta_renas=0.007 ms viol_prio=0 viol_regras=0 decisoes=5 (com disputa: 0) util_noel=63.1%
+E06_R05_rep3: status=ok T=18.250 ms concluidos=6/6 vazao=328.78 pedidos/s espera_p95=2.104 ms resposta_renas=0.026 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=61.5%
+E06_R30_rep3: status=ok T=35.178 ms concluidos=6/6 vazao=170.56 pedidos/s espera_p95=2.108 ms resposta_renas=0.009 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=31.9%
+E06_R10_rep4: status=ok T=21.349 ms concluidos=6/6 vazao=281.04 pedidos/s espera_p95=5.205 ms resposta_renas=0.010 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=52.6%
+E03_R10_rep4: status=ok T=18.283 ms concluidos=3/3 vazao=164.09 pedidos/s espera_p95=5.132 ms resposta_renas=0.030 ms viol_prio=0 viol_regras=0 decisoes=2 (com disputa: 0) util_noel=44.5%
+E12_R10_rep4: status=ok T=27.551 ms concluidos=12/12 vazao=435.55 pedidos/s espera_p95=5.398 ms resposta_renas=0.030 ms viol_prio=0 viol_regras=0 decisoes=5 (com disputa: 0) util_noel=63.1%
+E06_R05_rep4: status=ok T=18.243 ms concluidos=6/6 vazao=328.89 pedidos/s espera_p95=2.098 ms resposta_renas=0.011 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=61.5%
+E06_R30_rep4: status=ok T=35.243 ms concluidos=6/6 vazao=170.25 pedidos/s espera_p95=2.102 ms resposta_renas=0.013 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=31.9%
+E06_R10_rep5: status=ok T=21.329 ms concluidos=6/6 vazao=281.31 pedidos/s espera_p95=5.171 ms resposta_renas=0.008 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=52.6%
+E03_R10_rep5: status=ok T=18.262 ms concluidos=3/3 vazao=164.27 pedidos/s espera_p95=5.115 ms resposta_renas=0.014 ms viol_prio=0 viol_regras=0 decisoes=2 (com disputa: 0) util_noel=44.6%
+E12_R10_rep5: status=ok T=27.483 ms concluidos=12/12 vazao=436.63 pedidos/s espera_p95=5.340 ms resposta_renas=0.016 ms viol_prio=0 viol_regras=0 decisoes=5 (com disputa: 0) util_noel=63.0%
+E06_R05_rep5: status=ok T=18.263 ms concluidos=6/6 vazao=328.54 pedidos/s espera_p95=2.108 ms resposta_renas=0.015 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=61.5%
+E06_R30_rep5: status=ok T=35.534 ms concluidos=6/6 vazao=168.85 pedidos/s espera_p95=2.117 ms resposta_renas=0.017 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 0) util_noel=32.4%
+>> teste funcional: --teste-prioridade (6 elfos, renas em 30 ms)
+$ ./simulacao --elfos 6 --renas-ms 30 --rep 1 --semente 11 --out ../dados/teste_prioridade/ --teste-prioridade
+teste_E06_R30_rep1: status=ok T=41.927 ms concluidos=6/6 vazao=143.11 pedidos/s espera_p95=25.766 ms resposta_renas=0.018 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 1) util_noel=27.1%
+[teste-prioridade] disputa na 1a decisão (renas e grupo prontos): SIM
+[teste-prioridade] primeira decisão = renas -> OK
+[teste-prioridade] elfos atendidos = 6/6 -> OK
+[teste-prioridade] violações (prioridade=0, regras=0) -> OK
+[teste-prioridade] RESULTADO: PASSOU
+codigo_saida=0
+>> demonstração: política ingênua (elfos primeiro), mesmo cenário do teste
+$ ./simulacao --elfos 6 --renas-ms 30 --rep 1 --semente 11 --out ../dados/ingenua/ --teste-prioridade --ingenua
+teste_ingenua_E06_R30_rep1: status=violacao T=41.327 ms concluidos=6/6 vazao=145.19 pedidos/s espera_p95=20.132 ms resposta_renas=6.145 ms viol_prio=2 viol_regras=0 decisoes=3 (com disputa: 2) util_noel=27.0%
+[teste-prioridade] disputa na 1a decisão (renas e grupo prontos): SIM
+[teste-prioridade] primeira decisão = elfos -> FALHOU
+[teste-prioridade] elfos atendidos = 6/6 -> OK
+[teste-prioridade] violações (prioridade=2, regras=0) -> FALHOU
+[teste-prioridade] RESULTADO: FALHOU
+codigo_saida=1
+>> estresse: 100 x {3 elfos/10 ms, 12 elfos/5 ms, 12 elfos/30 ms}
+estresse: ok = 300 de 300
+estresse: maior T = 35.688 ms
+>> concluído. Status da matriz:
+   ok: 25 de 25

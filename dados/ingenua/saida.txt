@@ -1,0 +1,8 @@
+$ ./simulacao --elfos 6 --renas-ms 30 --rep 1 --semente 11 --out ../dados/ingenua/ --teste-prioridade --ingenua
+teste_ingenua_E06_R30_rep1: status=violacao T=41.480 ms concluidos=6/6 vazao=144.65 pedidos/s espera_p95=20.280 ms resposta_renas=6.296 ms viol_prio=2 viol_regras=0 decisoes=3 (com disputa: 2) util_noel=27.2%
+[teste-prioridade] disputa na 1a decisão (renas e grupo prontos): SIM
+[teste-prioridade] primeira decisão = elfos -> FALHOU
+[teste-prioridade] elfos atendidos = 6/6 -> OK
+[teste-prioridade] violações (prioridade=2, regras=0) -> FALHOU
+[teste-prioridade] RESULTADO: FALHOU
+codigo_saida=1

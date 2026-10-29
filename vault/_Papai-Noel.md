@@ -8,19 +8,19 @@ Stack:
   - Python
   - pandas
   - matplotlib
-Codigo: "Problema_Papai-Noel/tema11_papai_noel"
+Codigo: "Problema_Papai-Noel"
 Atualizado: 2026-10-29
 ---
 # Papai-Noel
 
 Trabalho de **Sistemas Operacionais** (Tema 11, Prof. Lucca Abbado Neres, FAG): o **Problema do Papai Noel** em **C11 com pthreads**, na versão finita. São uma thread Noel, 9 renas e N elfos. Noel atende grupos de exatamente 3 elfos e prepara uma única viagem quando as 9 renas chegam, com prioridade para as renas. O programa mede vazão, espera dos elfos e resposta às renas em 25 execuções, e scripts Python geram os gráficos, o relatório e os slides.
 
-- **Código:** `tema11_papai_noel/src/` (7 arquivos `.c` e os headers). A documentação fica em `vault/`.
+- **Código:** `src/` na raiz do projeto (antes em `tema11_papai_noel/`, movido em 2026-10-29) (7 arquivos `.c` e os headers). A documentação fica em `vault/`.
 - **Entrada:** argumentos de linha de comando (`--elfos`, `--renas-ms`, `--rep`, `--semente`, `--out`, `--teste-prioridade`, `--ingenua`, `--timeout-ms`).
 - **Saída:** `resumo.csv`, `eventos.csv` e `espera_elfos.csv` em `dados/`, os PNGs G1–G4 em `graficos/`, mais `relatorio.pdf` e a apresentação.
-- **Apresentação (v4, 2026-10-28, atual):** `tema11_papai_noel/apresentacao/apresentacao_papai_noel.pptx`, 27 slides + 4 de apoio em 6 seções com page tracker, gerada por `apresentacao/gerar_apresentacao.py` (código lido de `src/`, números de `dados/`). Planejada com as skills de apresentação (pirâmide + SCQA, títulos de ação, um acento por slide). Roteiro e estudo slide a slide em [[Guia da Apresentação v4 (Papai Noel)]].
+- **Apresentação (v4, 2026-10-28, atual):** `apresentacao/apresentacao_papai_noel.pptx`, 27 slides + 4 de apoio em 6 seções com page tracker, gerada por `apresentacao/gerar_apresentacao.py` (código lido de `src/`, números de `dados/`). Planejada com as skills de apresentação (pirâmide + SCQA, títulos de ação, um acento por slide). Roteiro e estudo slide a slide em [[Guia da Apresentação v4 (Papai Noel)]].
 - **Versões anteriores dos slides:** a v3 (37 slides, `scripts/gerar_slides.py`) não tem mais o `slides.pptx` na pasta [CONFIRMADO 2026-10-28], mas o script ainda o regenera; seu guia é [[Guia Completo da Apresentação (Papai Noel)]]. A v1 (10 slides) e a v2 (36) estão em `backup/`.
-- **Versão infinita com interface web (2026-10-28):** pasta `papai_noel_infinito/`. É a única versão no GitHub (`felipe783/Problema_Papai-Noel`); `tema11_papai_noel/` fica só local, ignorada via `.git/info/exclude`. Ciclos sem fim, relógio virtual com pausa/velocidade e interface servida por `servidor.py` (`make web`). Detalhes em [[Versão Infinita com Interface (Papai Noel)]].
+- **Versão infinita com interface web (2026-10-28):** pasta `papai_noel_infinito/`, ao lado da finita (que fica na raiz) no GitHub `felipe783/Problema_Papai-Noel`. Ciclos sem fim, relógio virtual com pausa/velocidade e interface servida por `servidor.py` (`make web`). Detalhes em [[Versão Infinita com Interface (Papai Noel)]].
 - **Sincronização:** **1 mutex + 4 variáveis de condição**. **Não há semáforos** nem `pthread_barrier`: o sinal de início é uma "barreira caseira" feita com contador e variável de condição. Detalhes em [[Sincronização no Código (Papai Noel)]].
 
 ## Status
@@ -41,7 +41,7 @@ Trabalho de **Sistemas Operacionais** (Tema 11, Prof. Lucca Abbado Neres, FAG): 
 ## Como rodar
 
 ```bash
-cd tema11_papai_noel/src
+cd src
 gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao
 ./simulacao --elfos 6 --renas-ms 10 --rep 1 --semente 11 --out ../dados/
 ./simulacao --elfos 6 --renas-ms 30 --out ../dados/teste_prioridade/ --teste-prioridade

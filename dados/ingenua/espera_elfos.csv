@@ -1,0 +1,7 @@
+execucao,elfo_id,grupo_id,t_pedido_ms,t_inicio_ajuda_ms,espera_ms
+teste_ingenua_E06_R30_rep1,0,1,10.079,30.126,20.047
+teste_ingenua_E06_R30_rep1,1,1,11.065,30.126,19.061
+teste_ingenua_E06_R30_rep1,2,1,12.079,30.126,18.047
+teste_ingenua_E06_R30_rep1,3,2,13.069,33.350,20.280
+teste_ingenua_E06_R30_rep1,4,2,14.067,33.350,19.283
+teste_ingenua_E06_R30_rep1,5,2,15.082,33.350,18.268

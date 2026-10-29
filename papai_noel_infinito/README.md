@@ -1,6 +1,6 @@
 # Problema do Papai Noel — versão infinita com interface
 
-Variação do Tema 11 (Sistemas Operacionais) em que Noel, renas e elfos repetem seus ciclos **para sempre**, com uma interface web que mostra o estado em tempo real. A versão finita do trabalho (`tema11_papai_noel/`) não faz parte deste repositório.
+Variação do Tema 11 (Sistemas Operacionais) em que Noel, renas e elfos repetem seus ciclos **para sempre**, com uma interface web que mostra o estado em tempo real. A versão finita do trabalho fica na raiz do repositório (`../`) e não foi alterada.
 
 - **Noel** dorme até haver as **9 renas** no estábulo ou um **grupo de 3 elfos** na fila. Com os dois prontos, as **renas têm prioridade**. Depois ele atrela o trenó, viaja (e nesse tempo não atende ninguém) e volta a dormir.
 - **Renas:** férias (tempo sorteado) → estábulo → viagem → férias...

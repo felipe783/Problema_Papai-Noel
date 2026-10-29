@@ -1,0 +1,8 @@
+$ ./simulacao --elfos 6 --renas-ms 30 --rep 1 --semente 11 --out ../dados/teste_prioridade/ --teste-prioridade
+teste_E06_R30_rep1: status=ok T=41.399 ms concluidos=6/6 vazao=144.93 pedidos/s espera_p95=25.252 ms resposta_renas=0.018 ms viol_prio=0 viol_regras=0 decisoes=3 (com disputa: 1) util_noel=27.1%
+[teste-prioridade] disputa na 1a decisão (renas e grupo prontos): SIM
+[teste-prioridade] primeira decisão = renas -> OK
+[teste-prioridade] elfos atendidos = 6/6 -> OK
+[teste-prioridade] violações (prioridade=0, regras=0) -> OK
+[teste-prioridade] RESULTADO: PASSOU
+codigo_saida=0

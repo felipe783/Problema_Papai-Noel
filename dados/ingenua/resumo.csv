@@ -1,0 +1,2 @@
+tema,configuracao,conjunto,repeticao,semente,elfos,renas_ms,T_ms,previstos,concluidos,vazao_pedidos_s,espera_media_ms,espera_p95_ms,espera_max_ms,n_amostras,resposta_renas_ms,violacoes_prioridade,violacoes_regras,utilizacao_noel,status
+11_papai_noel,E06_R30,teste_ingenua,1,11,6,30,41.480,6,6,144.65,19.164,20.280,20.280,6,6.296,2,0,0.2721,violacao

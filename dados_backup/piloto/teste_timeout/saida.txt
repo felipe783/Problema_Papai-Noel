@@ -1,0 +1,2 @@
+E06_R10_rep1: status=timeout T=5.076 ms concluidos=0/6 vazao=0.00 pedidos/s espera_p95=-1.000 ms resposta_renas=-1.000 ms viol_prio=0 viol_regras=0 decisoes=0 (com disputa: 0) util_noel=0.0%
+   (código de saída 2: --elfos 6 --renas-ms 10 --rep 1 --semente 0 --timeout-ms 5 --out /home/fpmulinari/Downloads/Faculdade/Problema_Papai-Noel/tema11_papai_noel/dados/piloto/teste_timeout/)

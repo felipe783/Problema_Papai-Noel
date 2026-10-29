@@ -1,0 +1,7 @@
+execucao,elfo_id,grupo_id,t_pedido_ms,t_inicio_ajuda_ms,espera_ms
+teste_E06_R30_rep1,0,1,10.071,35.661,25.590
+teste_E06_R30_rep1,1,1,11.059,35.661,24.602
+teste_E06_R30_rep1,2,1,12.060,35.661,23.601
+teste_E06_R30_rep1,3,2,13.057,38.823,25.766
+teste_E06_R30_rep1,4,2,14.060,38.823,24.763
+teste_E06_R30_rep1,5,2,15.058,38.823,23.764

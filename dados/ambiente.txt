@@ -1,0 +1,13 @@
+data: 2026-10-28T21:22:55-03:00
+maquina: fedora
+cpu: AMD Ryzen AI 5 340 w/ Radeon 840M
+cpus_logicas (nproc): 12
+memoria: 14Gi
+so: Fedora Linux 43 (Workstation Edition)
+kernel: Linux 7.2.11-100.fc43.x86_64 x86_64
+gcc: gcc (GCC) 15.3.1 20260722 (Red Hat 15.3.1-1)
+glibc: ldd (GNU libc) 2.42
+python: Python 3.14.8
+comando_compilacao: cd src && gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao
+timeout_ms: 2000
+compilacao: sem warnings

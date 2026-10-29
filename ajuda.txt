@@ -1,0 +1,106 @@
+=====================================================================
+ PROBLEMA DO PAPAI NOEL (Tema 11) - COMANDOS PARA RODAR
+=====================================================================
+
+Todos os comandos partem desta pasta:
+
+    cd ~/Downloads/Faculdade/Problema_Papai-Noel
+
+
+---------------------------------------------------------------------
+ 1. ANTES DA APRESENTACAO (fazer em casa, uma vez)
+---------------------------------------------------------------------
+
+# Backup dos dados e graficos atuais (os que batem com os slides)
+cp -r dados dados_backup
+cp -r graficos graficos_backup
+
+# Ambiente Python para os graficos (precisa de internet)
+python3 -m venv .venv
+.venv/bin/pip install pandas matplotlib
+
+
+---------------------------------------------------------------------
+ 2. RODAGEM OFICIAL COMPLETA (o que mostrar na apresentacao)
+---------------------------------------------------------------------
+
+# ATENCAO: APAGA os CSVs de dados/ e refaz tudo:
+# compila + piloto + 25 execucoes + teste de prioridade + ingenua + estresse
+bash scripts/run_experimentos.sh
+
+# Gera de novo os graficos G1-G4 em graficos/ (sobrescreve os PNGs)
+.venv/bin/python scripts/graficos.py
+
+O que deve aparecer:
+  - teste de prioridade ......... RESULTADO: PASSOU
+  - ingenua ..................... viol_prio=2 e FALHOU (esperado!)
+  - estresse .................... ok = 300 de 300
+  - matriz (no final) ........... ok: 25 de 25
+
+Os numeros mudam um pouco a cada rodada (ruido do SO).
+As regras e as tendencias nao mudam.
+
+
+---------------------------------------------------------------------
+ 3. COMPILAR E RODAR NA MAO (demonstracao, sem mexer em dados/)
+---------------------------------------------------------------------
+
+cd src
+gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao
+
+# A pasta de saida PRECISA existir
+mkdir -p /tmp/demo
+
+# Execucao normal (referencia: 6 elfos, renas em 10 ms)
+./simulacao --elfos 6 --renas-ms 10 --out /tmp/demo/
+
+# Renas antes (5 ms) e depois (30 ms) dos elfos
+./simulacao --elfos 6 --renas-ms 5  --out /tmp/demo/
+./simulacao --elfos 6 --renas-ms 30 --out /tmp/demo/
+
+# Mais elfos
+./simulacao --elfos 12 --renas-ms 10 --out /tmp/demo/
+
+# Teste de prioridade (forca renas e grupo prontos juntos) -> PASSOU
+./simulacao --elfos 6 --renas-ms 30 --out /tmp/demo/ --teste-prioridade
+  
+# Versao ingenua (elfos primeiro, de proposito) -> 2 violacoes
+./simulacao --elfos 6 --renas-ms 30 --out /tmp/demo/ --teste-prioridade --ingenua
+
+# Forcar o timeout de seguranca -> status=timeout, sem travar
+./simulacao --elfos 6 --renas-ms 10 --out /tmp/demo/ --timeout-ms 5
+
+# Ver os CSVs gerados
+cat /tmp/demo/resumo.csv
+
+# Ajuda do programa
+./simulacao --help
+
+cd ..
+
+
+---------------------------------------------------------------------
+ 4. OPCOES DO PROGRAMA
+---------------------------------------------------------------------
+
+--elfos N           quantidade de elfos, multiplo de 3 (3..300)  [obrigatorio]
+--renas-ms R        instante em que as 9 renas chegam, em ms      [obrigatorio]
+--rep K             numero da repeticao (padrao 1)
+--semente S         so um id da repeticao, NAO e aleatorio (padrao 11)
+--out DIR           pasta dos CSVs (padrao dados/); os CSVs sao ACRESCENTADOS
+--timeout-ms MS     timeout de seguranca (padrao 2000)
+--teste-prioridade  Noel so decide com renas E grupo prontos
+--ingenua           politica errada (elfos antes das renas), para demonstracao
+--ajuda-ms, --preparo-ms, --elfo0-ms   duracoes (padrao 3, 5, 10)
+
+Codigos de saida: 0 = ok | 2 = timeout ou violacao | 1 = erro ou teste
+que falhou | 64 = argumentos invalidos
+
+
+---------------------------------------------------------------------
+ 5. DEPOIS DA APRESENTACAO (voltar ao estado dos slides)
+---------------------------------------------------------------------
+
+rm -rf dados graficos
+mv dados_backup dados
+mv graficos_backup graficos
