@@ -1,8 +1,8 @@
 # Versão Infinita com Interface (Papai Noel)
 
-Variação do trabalho na raiz de `Problema_Papai-Noel/` (antes em `papai_noel_infinito/`; movida em 2026-10-29), separada da versão finita (`tema11_papai_noel/`, que não foi alterada e fica fora do Git via `.git/info/exclude`). Noel, renas e elfos repetem seus ciclos até o encerramento, e uma interface web mostra o estado ao vivo. Criada em 2026-10-28; o uso está no `README.md` da raiz. É o único código versionado em https://github.com/felipe783/Problema_Papai-Noel.
+Variação do trabalho em `Problema_Papai-Noel/papai_noel_infinito/`, separada da versão finita (`tema11_papai_noel/`, que não foi alterada e fica fora do Git via `.git/info/exclude`). Noel, renas e elfos repetem seus ciclos até o encerramento, e uma interface web mostra o estado ao vivo. Criada em 2026-10-28; o uso está no `README.md` da pasta. É o único código versionado em https://github.com/felipe783/Problema_Papai-Noel.
 
-> Referências de código são de `src/` (raiz do projeto), conferidas em 2026-10-28.
+> Referências de código são de `papai_noel_infinito/src/`, conferidas em 2026-10-28.
 
 ## O que muda em relação à versão finita
 

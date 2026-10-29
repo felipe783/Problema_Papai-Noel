@@ -27,6 +27,7 @@ Variação do Tema 11 (Sistemas Operacionais) em que Noel, renas e elfos repetem
 Requisitos: `gcc` com C11/pthreads e Python 3 (só a biblioteca padrão).
 
 ```bash
+cd papai_noel_infinito
 make web          # compila e abre o servidor em http://127.0.0.1:8000
 ```
 
@@ -70,13 +71,12 @@ navegador (web/)  ◄── SSE /api/eventos ──  servidor.py  ◄── stdo
 ## Estrutura
 
 ```
-Problema_Papai-Noel/
+papai_noel_infinito/
 ├── src/        main.c noel.c rena.c elfo.c relogio.c saida.c + comum.h, atores.h, relogio.h, saida.h
 ├── web/        index.html, style.css, app.js (sem dependências externas)
 ├── servidor.py
 ├── Makefile
-├── README.md
-└── vault/      notas do Obsidian
+└── README.md
 ```
 
 ## Métricas da interface

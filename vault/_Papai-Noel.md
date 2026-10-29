@@ -20,7 +20,7 @@ Trabalho de **Sistemas Operacionais** (Tema 11, Prof. Lucca Abbado Neres, FAG): 
 - **Saída:** `resumo.csv`, `eventos.csv` e `espera_elfos.csv` em `dados/`, os PNGs G1–G4 em `graficos/`, mais `relatorio.pdf` e a apresentação.
 - **Apresentação (v4, 2026-10-28, atual):** `tema11_papai_noel/apresentacao/apresentacao_papai_noel.pptx`, 27 slides + 4 de apoio em 6 seções com page tracker, gerada por `apresentacao/gerar_apresentacao.py` (código lido de `src/`, números de `dados/`). Planejada com as skills de apresentação (pirâmide + SCQA, títulos de ação, um acento por slide). Roteiro e estudo slide a slide em [[Guia da Apresentação v4 (Papai Noel)]].
 - **Versões anteriores dos slides:** a v3 (37 slides, `scripts/gerar_slides.py`) não tem mais o `slides.pptx` na pasta [CONFIRMADO 2026-10-28], mas o script ainda o regenera; seu guia é [[Guia Completo da Apresentação (Papai Noel)]]. A v1 (10 slides) e a v2 (36) estão em `backup/`.
-- **Versão infinita com interface web (2026-10-28):** na raiz do projeto (`src/`, `web/`, `servidor.py`; movida de `papai_noel_infinito/` em 2026-10-29). É a única versão no GitHub (`felipe783/Problema_Papai-Noel`); `tema11_papai_noel/` fica só local, ignorada via `.git/info/exclude`. Ciclos sem fim, relógio virtual com pausa/velocidade e interface servida por `servidor.py` (`make web`). Detalhes em [[Versão Infinita com Interface (Papai Noel)]].
+- **Versão infinita com interface web (2026-10-28):** pasta `papai_noel_infinito/`. É a única versão no GitHub (`felipe783/Problema_Papai-Noel`); `tema11_papai_noel/` fica só local, ignorada via `.git/info/exclude`. Ciclos sem fim, relógio virtual com pausa/velocidade e interface servida por `servidor.py` (`make web`). Detalhes em [[Versão Infinita com Interface (Papai Noel)]].
 - **Sincronização:** **1 mutex + 4 variáveis de condição**. **Não há semáforos** nem `pthread_barrier`: o sinal de início é uma "barreira caseira" feita com contador e variável de condição. Detalhes em [[Sincronização no Código (Papai Noel)]].
 
 ## Status
@@ -35,7 +35,7 @@ Trabalho de **Sistemas Operacionais** (Tema 11, Prof. Lucca Abbado Neres, FAG): 
 | Invariantes contadas em tempo de execução | Implementado; algumas checagens são defensivas e nunca disparam por construção ([[Riscos de Sincronização (Papai Noel)]]) |
 | Teste funcional `--teste-prioridade` | Passou [CONFIRMADO 2026-10-28] |
 | Matriz de 25 execuções + gráficos | 25/25 `ok` [CONFIRMADO 2026-10-28] |
-| Versão infinita + interface web (raiz do projeto) | Implementada; estresse com 0 violações [CONFIRMADO 2026-10-28] |
+| Versão infinita + interface web (`papai_noel_infinito/`) | Implementada; estresse com 0 violações [CONFIRMADO 2026-10-28] |
 | Testes automatizados com sanitizers (TSan/Helgrind) | Não existem: as ferramentas não estão instaladas na máquina |
 
 ## Como rodar
