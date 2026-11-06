@@ -2,7 +2,7 @@
 
 Esta é a nota central para a apresentação. Mostra **quais mecanismos existem de verdade**, onde nascem, quem espera, quem libera e em que ordem tudo acontece. Ela complementa a [[Lógica e Fluxo (Papai Noel)]] (o quê e quando) e alimenta as [[Perguntas da Apresentação (Papai Noel)]]. Os riscos estão em [[Riscos de Sincronização (Papai Noel)]]. A mesma sincronização vista **fase a fase**, com os cenários de chegada das renas, está em [[Fluxo do Código e Sincronização (Papai Noel)]].
 
-> Todas as referências `arquivo:linha` são de `tema11_papai_noel/src/`, conferidas em 2026-10-28. Se o código mudar, confira os números de linha de novo.
+> Todas as referências `arquivo:linha` são de `src/`, conferidas em 2026-10-28. Se o código mudar, confira os números de linha de novo.
 
 ## 1. O que existe (e o que não existe)
 

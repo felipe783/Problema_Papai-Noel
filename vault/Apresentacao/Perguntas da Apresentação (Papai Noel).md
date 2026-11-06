@@ -1,6 +1,6 @@
 # Perguntas da Apresentação (Papai Noel)
 
-Cada pergunta tem quatro partes: 🎤 **resposta oral** (30–60 s, para falar), 📘 **aprofundamento** (para você entender), 💻 **no código** (trecho real, de `tema11_papai_noel/src/`) e ❓ **pergunta extra do professor**, com resposta. Base técnica: [[Sincronização no Código (Papai Noel)]], [[Lógica e Fluxo (Papai Noel)]], [[Riscos de Sincronização (Papai Noel)]], [[Testes e Gráficos (Papai Noel)]].
+Cada pergunta tem quatro partes: 🎤 **resposta oral** (30–60 s, para falar), 📘 **aprofundamento** (para você entender), 💻 **no código** (trecho real, de `src/`) e ❓ **pergunta extra do professor**, com resposta. Base técnica: [[Sincronização no Código (Papai Noel)]], [[Lógica e Fluxo (Papai Noel)]], [[Riscos de Sincronização (Papai Noel)]], [[Testes e Gráficos (Papai Noel)]].
 
 > **Três frases para não errar:** (1) usamos **1 mutex e 4 variáveis de condição, nenhum semáforo**; (2) o mutex é inicializado em **`main.c:131`**, `pthread_mutex_init(&o->mutex, NULL)`, e começa **destravado**; (3) a prioridade é garantida porque **só Noel decide**, com o mutex, testando as renas primeiro, e ele não olha nada enquanto ajuda.
 

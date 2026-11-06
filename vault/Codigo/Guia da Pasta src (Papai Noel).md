@@ -1,13 +1,13 @@
 # Guia da Pasta src (Papai Noel)
 
-Guia de estudo da pasta `tema11_papai_noel/src/`, arquivo por arquivo. Para cada arquivo: **(A)** a responsabilidade, **(B)** os blocos importantes, **(C)** a relação com o Problema do Papai Noel e **(D)** o que falharia se o bloco estivesse errado, fosse removido ou rodasse fora de ordem. Índice: [[_Papai-Noel]].
+Guia de estudo da pasta `src/`, arquivo por arquivo. Para cada arquivo: **(A)** a responsabilidade, **(B)** os blocos importantes, **(C)** a relação com o Problema do Papai Noel e **(D)** o que falharia se o bloco estivesse errado, fosse removido ou rodasse fora de ordem. Índice: [[_Papai-Noel]].
 
 - Como compilar, rodar e usar cada flag: [[Execução e Flags (Papai Noel)]].
 - A sincronização vista **fase a fase**, com linhas do tempo: [[Fluxo do Código e Sincronização (Papai Noel)]].
 - A sincronização vista **mecanismo a mecanismo** (mutex e cada cond var): [[Sincronização no Código (Papai Noel)]].
 - As regras do problema e os estados: [[Lógica e Fluxo (Papai Noel)]].
 
-> Lido no código em 2026-10-28 [CONFIRMADO 2026-10-28]. As referências `arquivo:linha` são de `tema11_papai_noel/src/`. Se o código mudar, confira os números de novo. Esta nota não altera o código: apenas descreve o que existe.
+> Lido no código em 2026-10-28 [CONFIRMADO 2026-10-28]. As referências `arquivo:linha` são de `src/`. Se o código mudar, confira os números de novo. Esta nota não altera o código: apenas descreve o que existe.
 
 ## 1. Visão geral
 
@@ -29,14 +29,14 @@ Os links abaixo são relativos à pasta real `Problema_Papai-Noel/vault/`. Funci
 
 | Arquivo | Responsabilidade | Roda em que fase | Concorrente? |
 |---|---|---|---|
-| [`comum.h`](../tema11_papai_noel/src/comum.h) | Constantes, enums, `Config`, `Grupo`, `Evento`, `Oficina`; protótipos de `esperar_largada` e `registrar` | (tipos) | define o estado compartilhado |
-| [`main.c`](../tema11_papai_noel/src/main.c) | Argumentos, inicialização, criação das threads, sinal de início, joins, destruição, métricas, CSV, código de saída. Também define `esperar_largada` e `registrar` | do início ao fim | sim, na largada; depois dos joins, não |
-| [`noel.c`](../tema11_papai_noel/src/noel.c) | Thread do Noel: laço de decisão, prioridade, ajuda, preparação, timeout, encerramento | depois da largada | sim |
-| [`elfo.c`](../tema11_papai_noel/src/elfo.c) | Thread de um elfo: chegada, inscrição no grupo aberto, fechamento do grupo, espera pela ajuda | depois da largada | sim |
-| [`rena.c`](../tema11_papai_noel/src/rena.c) | Thread de uma rena: chegada, contagem, aviso da 9ª, espera pela viagem | depois da largada | sim |
-| [`tempo.c`](../tema11_papai_noel/src/tempo.c) / `tempo.h` | Relógio `CLOCK_MONOTONIC`, aritmética de `timespec`, sleep absoluto | em todas as threads | funções sem estado próprio |
-| [`metricas.c`](../tema11_papai_noel/src/metricas.c) / `metricas.h` | Invariantes finais, vazão, esperas, p95, resposta às renas, utilização, status | depois dos joins | **não** |
-| [`csv.c`](../tema11_papai_noel/src/csv.c) / `csv.h` | Nome da execução e do conjunto; gravação de `resumo.csv`, `eventos.csv`, `espera_elfos.csv` | depois dos joins | **não** |
+| [`comum.h`](../../src/comum.h) | Constantes, enums, `Config`, `Grupo`, `Evento`, `Oficina`; protótipos de `esperar_largada` e `registrar` | (tipos) | define o estado compartilhado |
+| [`main.c`](../../src/main.c) | Argumentos, inicialização, criação das threads, sinal de início, joins, destruição, métricas, CSV, código de saída. Também define `esperar_largada` e `registrar` | do início ao fim | sim, na largada; depois dos joins, não |
+| [`noel.c`](../../src/noel.c) | Thread do Noel: laço de decisão, prioridade, ajuda, preparação, timeout, encerramento | depois da largada | sim |
+| [`elfo.c`](../../src/elfo.c) | Thread de um elfo: chegada, inscrição no grupo aberto, fechamento do grupo, espera pela ajuda | depois da largada | sim |
+| [`rena.c`](../../src/rena.c) | Thread de uma rena: chegada, contagem, aviso da 9ª, espera pela viagem | depois da largada | sim |
+| [`tempo.c`](../../src/tempo.c) / `tempo.h` | Relógio `CLOCK_MONOTONIC`, aritmética de `timespec`, sleep absoluto | em todas as threads | funções sem estado próprio |
+| [`metricas.c`](../../src/metricas.c) / `metricas.h` | Invariantes finais, vazão, esperas, p95, resposta às renas, utilização, status | depois dos joins | **não** |
+| [`csv.c`](../../src/csv.c) / `csv.h` | Nome da execução e do conjunto; gravação de `resumo.csv`, `eventos.csv`, `espera_elfos.csv` | depois dos joins | **não** |
 | `noel.h`, `elfo.h`, `rena.h` | Protótipo da função de thread e, em `elfo.h`/`rena.h`, o argumento (`ArgElfo`, `ArgRena`) | (tipos) | — |
 
 ## 3. Dependências entre módulos

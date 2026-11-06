@@ -1,8 +1,8 @@
 # Resumo para revisão rápida: Problema do Papai Noel (Tema 11)
 
-> **Vai apresentar agora? Leia a [seção 10](#10-revisão-de-um-minuto) primeiro.**
+> **Vai apresentar agora? Leia a [[#10. Revisão de um minuto|seção 10]] primeiro.**
 >
-> Este resumo trata da **versão finita** (`tema11_papai_noel/`), que é a do trabalho. As linhas citadas são de `tema11_papai_noel/src/`, conferidas no código em 2026-10-28. Apresentação atual: `tema11_papai_noel/apresentacao/apresentacao_papai_noel.pptx` (v4, 31 slides).
+> Este resumo trata da **versão finita** (raiz do projeto `Problema_Papai-Noel/`), que é a do trabalho. As linhas citadas são de `src/`, conferidas no código em 2026-10-28. Apresentação atual: `apresentacao/apresentacao_papai_noel.pptx` (v4: 31 slides gerados; o arquivo atual, editado à mão, tem 22 em 2026-10-29). Os números de slide abaixo são da v4: correspondência em [[Guia da Apresentação v4 (Papai Noel)#Correspondência com o deck atual (22 slides)]].
 >
 > ⚠️ **O mais importante:** o código usa **1 mutex + 4 variáveis de condição** e **nenhum semáforo**. Quando a pergunta falar de semáforo, explique o conceito e diga que não usamos.
 
@@ -206,7 +206,7 @@ As 8 perguntas originais (P1–P8) e as perguntas sobre o código vêm de `vault
 
 ## 8. Gráficos e diagramas
 
-Os PNGs estão em `tema11_papai_noel/graficos/`. Os números vêm de `dados/` (25/25 execuções `ok`).
+Os PNGs estão em `graficos/`. Os números vêm de `dados/` (25/25 execuções `ok`).
 
 | Gráfico | O que mostra | Ideia para lembrar |
 |---|---|---|
@@ -287,7 +287,7 @@ main faz os joins → destrói os mecanismos → métricas → CSVs
 - **Fontes:** código de `src/` (todos os `.c`/`.h` principais), `README.md`, as notas de `vault/` e os textos dos slides da v4 e do `relatorio.pdf`.
 - **Divergências encontradas:**
   - O `Guia de Estudo Teórico` usa uma **implementação de referência** (`PTHREAD_MUTEX_INITIALIZER`, 3 cond vars, nomes como `renas_chegaram`) que **não é o código real**. Use-o só para teoria.
-  - O `Guia Completo da Apresentação` é da **v3 (37 slides)**: os números de slide não batem com a v4 atual (31 slides).
+  - O `Guia Completo da Apresentação` é da **v3 (37 slides)**: os números de slide não batem com a v4 (31 slides) nem com o deck atual (22).
   - O slide 31 (empate) diz **12/30** viagens; a reexecução registrada no vault deu **10/30**, e outra nota registra **8/30**. A proporção varia entre rodadas e o CSV não foi salvo; o que não muda é **0 violações**.
   - A nota `Lógica e Fluxo` chama a referência de "com disputa", mas o log mostra **0 decisões com disputa**. Lá, "disputa" quer dizer elfos e renas chegando juntos (disputando o mutex), não uma decisão com as duas demandas prontas.
   - `README.md` e `relatorio.pdf` ainda têm `[Integrante 1/2/3]`; o slide 1 da v4 já tem o nome. O README também cita um `slides.pptx` que não está mais na pasta.

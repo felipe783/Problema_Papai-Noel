@@ -136,7 +136,7 @@ O `printf` está em `main.c:231-236`. Para cada campo: o que é, como é calcula
 
 - **O que é:** quanto Noel demorou para começar a preparar o trenó depois que a 9ª rena chegou.
 - **Onde nasce:**
-  - `t_nona`: gravado pela rena que faz `renas_prontas` chegar a 9 (`rena.c:89-92`), logo antes do `pthread_cond_signal(&cv_noel)` (`rena.c:94`);
+  - `t_nona`: gravado pela rena que faz `renas_prontas` chegar a 9 (`rena.c:30-31`), logo antes do `pthread_cond_signal(&cv_noel)` (`rena.c:33`);
   - `t_ini_preparo`: gravado por Noel em `preparar_viagem` (`noel.c:27`).
 - **Fórmula** (`metricas.c:70`): `t_ini_preparo − t_nona`, ou `-1` se a viagem não começou.
 - **Sincronização:** este é o número que mais diretamente mede a **prioridade**.
@@ -267,8 +267,8 @@ Cada evento é registrado num ponto exato do código, sempre com o mutex adquiri
 |---|---|---|---|
 | `chegada` (elfo) | elfo | `elfo.c:43` | entrou no grupo aberto |
 | `grupo_pronto` | 3º elfo | `elfo.c:52` | fechou o grupo e vai acordar Noel (`signal`, `elfo.c:53`) |
-| `chegada` (rena) | rena | `rena.c:90` | incrementou `renas_prontas` |
-| `nona_rena` | 9ª rena | `rena.c:93` | vai acordar Noel (`signal`, `rena.c:94`) |
+| `chegada` (rena) | rena | `rena.c:29` | incrementou `renas_prontas` |
+| `nona_rena` | 9ª rena | `rena.c:32` | vai acordar Noel (`signal`, `rena.c:33`) |
 | `decisao` | Noel | `noel.c:125` ou `noel.c:130` | escolheu (o `estado_noel` já mostra a escolha: `preparando` ou `ajudando`) |
 | `inicio_preparacao` / `fim_preparacao` | Noel | `noel.c:28` / `noel.c:40` | o sleep da preparação acontece **entre** os dois, sem o mutex |
 | `inicio_ajuda` / `fim_ajuda` | Noel | `noel.c:57` / `noel.c:72` | idem para a ajuda |

@@ -4,7 +4,7 @@ A **lógica** dos laços do programa, sem entrar em linhas de código: quem repe
 
 Índice: [[_Papai-Noel]].
 
-> Lido no código de `tema11_papai_noel/src/` em 2026-10-28 [CONFIRMADO 2026-10-28].
+> Lido no código de `src/` em 2026-10-28 [CONFIRMADO 2026-10-28].
 
 ## Visão geral
 

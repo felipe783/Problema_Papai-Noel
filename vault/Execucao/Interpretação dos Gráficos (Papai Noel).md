@@ -2,7 +2,9 @@
 
 Como **ler, interpretar e defender** cada gráfico do trabalho. O objetivo é olhar para qualquer um deles e saber justificar a conclusão, não decorar o slide. Os números estão resumidos em [[Testes e Gráficos (Papai Noel)]]; esta nota explica **o porquê** de cada um. A fala slide a slide está em [[Guia da Apresentação v4 (Papai Noel)]] (slides 16–18 e 21–26). Índice: [[_Papai-Noel]].
 
-> Fontes, todas conferidas em 2026-10-28 [CONFIRMADO 2026-10-28]: `tema11_papai_noel/graficos/G1–G4.png`, `scripts/graficos.py` (gera os PNGs só a partir dos CSVs), `dados/resumo.csv`, `dados/espera_elfos.csv`, `dados/eventos.csv`, `dados/tabela_esperas.csv`, `dados/teste_prioridade/`, `dados/ingenua/`, `apresentacao/gerar_apresentacao.py` e `src/`. Os PNGs ficam fora do vault: abra-os pelo explorador ou pelos slides 22–25.
+> ⚠️ Os números de slide são da v4 (31 slides). No `.pptx` atual (22 slides, 2026-10-29), G1–G4 são os slides 19–22, e os slides 16–18 da v4 são os 15–17; o slide 31 (empate) foi removido. Correspondência completa: [[Guia da Apresentação v4 (Papai Noel)#Correspondência com o deck atual (22 slides)]].
+
+> Fontes, todas conferidas em 2026-10-28 [CONFIRMADO 2026-10-28]: `graficos/G1–G4.png`, `scripts/graficos.py` (gera os PNGs só a partir dos CSVs), `dados/resumo.csv`, `dados/espera_elfos.csv`, `dados/eventos.csv`, `dados/tabela_esperas.csv`, `dados/teste_prioridade/`, `dados/ingenua/`, `apresentacao/gerar_apresentacao.py` e `src/`. Os PNGs ficam fora do vault: abra-os pelo explorador ou pelos slides 22–25.
 
 ## Sumário
 

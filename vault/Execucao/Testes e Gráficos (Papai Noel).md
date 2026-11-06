@@ -1,6 +1,6 @@
 # Testes e Gráficos (Papai Noel)
 
-Como os experimentos foram feitos, o que os números dizem e como apresentar G1–G4. Todos os valores vêm de `tema11_papai_noel/dados/` (rodada de 2026-10-28) [CONFIRMADO 2026-10-28]. Os PNGs estão em `tema11_papai_noel/graficos/`, fora do vault, então abra-os pelo explorador de arquivos ou pelos slides. Como reproduzir (comandos, flags, venv): [[Execução e Flags (Papai Noel)]]. Índice: [[_Papai-Noel]].
+Como os experimentos foram feitos, o que os números dizem e como apresentar G1–G4. Todos os valores vêm da rodada de 2026-10-28 às 10:08, a que está nos slides, hoje guardada em `dados_backup/` (ver [[#Duas rodadas de dados]]) [CONFIRMADO 2026-10-29]. Os PNGs estão em `graficos/`, fora do vault, então abra-os pelo explorador de arquivos ou pelos slides. Como reproduzir (comandos, flags, venv): [[Execução e Flags (Papai Noel)]]. Índice: [[_Papai-Noel]].
 
 > Esta nota é o **resumo dos números**. Para aprender a ler cada gráfico (eixos, elementos, mecanismo no código, o que comprova e o que não comprova, roteiro oral e exercícios), use [[Interpretação dos Gráficos (Papai Noel)]].
 
@@ -46,6 +46,31 @@ Além da matriz, foram feitos:
 Taxa de execuções válidas: **25/25 (100%)**, com 0 violações de prioridade e 0 de regras.
 
 > **Por que tão pouca variação?** O cenário é dirigido pelo relógio: os instantes de chegada e as durações são fixos. A variação entre repetições é só o "ruído" do SO, abaixo de 1% na maioria dos casos. A exceção é a repetição 2 de E03_R10, com T = 18,754 ms contra ~18,26 ms nas outras, por um atraso do sistema. Ela foi mantida nos dados, sem refazer.
+
+## Duas rodadas de dados
+
+[CONFIRMADO 2026-10-29] Existem duas rodadas completas do `run_experimentos.sh`, ambas de 2026-10-28:
+
+| Pasta | Rodada | Usada em |
+|---|---|---|
+| `dados_backup/` + `graficos_backup/` | 10:08 (`ambiente.txt`) | **slides** (os 4 PNGs do `.pptx` são idênticos, byte a byte, aos de `graficos_backup/`), relatório e **todas as notas do vault** |
+| `dados/` + `graficos/` | 21:22 (`ambiente.txt`), refeita seguindo o `ajuda.txt` | nada ainda; `gerar_apresentacao.py` e `graficos.py` leem desta pasta |
+
+As conclusões são as mesmas nas duas: 25/25 `ok`, 0 violações, estresse 300/300 `ok`, teste de prioridade PASSOU e ingênua com 2 violações. Os números mudam menos de 2%:
+
+| Config. | Vazão 10:08 | Vazão 21:22 | p95 10:08 (ms) | p95 21:22 (ms) | Válidas 21:22 |
+|---|---|---|---|---|---|
+| E03_R10 | 163,4 | 164,1 | 5,21 | 5,12 | 5/5 |
+| E06_R10 | 280,9 | 280,9 | 5,20 | 5,22 | 5/5 |
+| E12_R10 | 436,2 | 435,8 | 5,37 | 5,40 | 5/5 |
+| E06_R05 | 328,7 | 328,9 | 2,10 | 2,10 | 5/5 |
+| E06_R30 | 170,0 | 170,4 | 2,11 | 2,12 | 5/5 |
+
+Valores de `tabela_esperas.csv` de cada pasta (vazão média e média dos p95 das 5 execuções). Arredondados para cima a partir da metade.
+
+> ⚠️ `dados/log_execucao.txt` é **idêntico** ao de `dados_backup/` (data de modificação 10:09). O `run_experimentos.sh` não grava esse arquivo: ele foi criado redirecionando a saída da rodada das 10:08. Por isso a afirmação "nenhuma decisão teve disputa na matriz" (`com disputa: 0`) está comprovada para a rodada das 10:08, mas **não foi conferida** para a das 21:22 [NÃO VERIFICADO].
+
+Se for mostrar os números de `dados/`, regenere os slides e confira as falas: os títulos dos slides citam valores da rodada das 10:08 (163 → 436, 5,12 × 5,20).
 
 ## Como apresentar cada gráfico
 

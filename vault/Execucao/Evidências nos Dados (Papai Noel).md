@@ -2,7 +2,7 @@
 
 O que é **cada conjunto de dados** do trabalho, o que ele mostra e **qual conclusão ele sustenta**, com as tabelas prontas para mostrar na apresentação. Os campos de cada CSV, um a um, estão em [[Saída do Programa (Papai Noel)]]. Os gráficos estão em [[Interpretação dos Gráficos (Papai Noel)]], e os números da matriz em [[Testes e Gráficos (Papai Noel)]]. Índice: [[_Papai-Noel]].
 
-> **Duas origens, sempre diga qual.** **Dados do projeto:** tudo o que está em `tema11_papai_noel/dados/`, gerado por `scripts/run_experimentos.sh` em 2026-10-28. **Verificações avulsas:** execuções feitas fora do projeto em 2026-10-28, com o mesmo binário compilado de `src/`, que **não estão salvas** em `dados/`. Cada tabela abaixo diz de qual das duas vem.
+> **Duas origens, sempre diga qual.** **Dados do projeto:** tudo o que está em `dados/`, gerado por `scripts/run_experimentos.sh` em 2026-10-28. **Verificações avulsas:** execuções feitas fora do projeto em 2026-10-28, com o mesmo binário compilado de `src/`, que **não estão salvas** em `dados/`. Cada tabela abaixo diz de qual das duas vem.
 
 ## Sumário
 
@@ -21,7 +21,9 @@ O que é **cada conjunto de dados** do trabalho, o que ele mostra e **qual concl
 
 ## 1. Mapa dos dados: o que é cada arquivo
 
-### 1.1 Dados do projeto (`tema11_papai_noel/dados/`)
+### 1.1 Dados do projeto (`dados/`)
+
+> As contagens e os números desta nota são da rodada de 2026-10-28 às 10:08, a dos slides, hoje copiada em `dados_backup/`. A pasta `dados/` foi regravada às 21:22 por uma nova rodada, com as mesmas conclusões e números até 2% diferentes. O `log_execucao.txt` de `dados/` ainda é o das 10:08. Detalhes em [[Testes e Gráficos (Papai Noel)#Duas rodadas de dados]] [CONFIRMADO 2026-10-29].
 
 | Arquivo ou pasta | O que é | Quantidade | Comando que gerou | Para que serve |
 |---|---|---|---|---|

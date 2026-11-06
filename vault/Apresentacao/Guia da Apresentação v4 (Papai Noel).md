@@ -1,6 +1,6 @@
 # Guia da Apresentação v4 (Papai Noel)
 
-Roteiro de estudo e de fala para a **apresentação v4** do Tema 11, o Problema do Papai Noel em C11 com pthreads. Este guia está **sincronizado com os 31 slides** de `tema11_papai_noel/apresentacao/apresentacao_papai_noel.pptx`, gerado por `tema11_papai_noel/apresentacao/gerar_apresentacao.py`. Se os slides mudarem, este guia precisa mudar junto.
+Roteiro de estudo e de fala para a **apresentação v4** do Tema 11, o Problema do Papai Noel em C11 com pthreads. Este guia foi escrito para os **31 slides** gerados em `apresentacao/apresentacao_papai_noel.pptx`, gerado por `apresentacao/gerar_apresentacao.py`. Se os slides mudarem, este guia precisa mudar junto.
 
 Índice do projeto: [[_Papai-Noel]]. O guia anterior, [[Guia Completo da Apresentação (Papai Noel)]], acompanha a **v3** (37 slides, `scripts/gerar_slides.py`, cujo `slides.pptx` não está mais na pasta). Ele continua útil como aprofundamento. Esta nota não repete tudo dele: foca na v4 e aponta para as notas detalhadas quando o assunto merece mais.
 
@@ -15,12 +15,30 @@ Roteiro de estudo e de fala para a **apresentação v4** do Tema 11, o Problema 
 | Cada arquivo de `src/` | [[Guia da Pasta src (Papai Noel)]] |
 | Compilar, rodar, flags | [[Execução e Flags (Papai Noel)]] |
 
+### Correspondência com o deck atual (22 slides)
+
+> [CONFIRMADO 2026-10-29] O `apresentacao/apresentacao_papai_noel.pptx` salvo em 2026-10-29 às 10:17 (editado à mão no LibreOffice, que estava com o arquivo aberto) tem **22 slides**, não os 31 que o `gerar_apresentacao.py` gera. Os títulos dos slides que ficaram são os mesmos da v4. Este guia **mantém a numeração da v4**; use a tabela para achar o slide no arquivo atual. Rodar o `gerar_apresentacao.py` de novo recria os 31 e desfaz a edição manual.
+
+| v4 (este guia) | Deck atual | Slide |
+|---|---|---|
+| 1–6 | 1–6 | capa, resposta, fundamentos, `if` × mutex, mecanismos, regras |
+| 7 | **removido** | "O problema é um escalonador em miniatura" |
+| 8–18 | 7–17 | threads e `Oficina` … correta × ingênua |
+| 19 | **removido** | "A solução atende aos critérios clássicos" |
+| 20 | 18 | deadlock e starvation |
+| 21 | **removido** | "25 execuções em 5 configurações" (método) |
+| 22–25 | 19–22 | G1, G2, G3, G4 |
+| 26–27 | **removidos** | testes × garantia; conclusão |
+| 28–31 (apoio) | **removidos** | mapa de perguntas, mutex × semáforo, linhas por arquivo, empate |
+
+Sem os slides 21, 26 e 27, o deck não tem mais slide de método, de testes nem de conclusão. As falas deles continuam neste guia, para serem ditas oralmente ou para recolocar os slides.
+
 ### Legenda de evidência
 
 | Marca | Significado |
 |---|---|
-| **[CÓDIGO]** | lido em `tema11_papai_noel/src/` em 2026-10-28; `arquivo:linha` se refere a esse código |
-| **[MEDIDO]** | número dos CSVs de `tema11_papai_noel/dados/` (rodada oficial de 2026-10-28) |
+| **[CÓDIGO]** | lido em `src/` em 2026-10-28; `arquivo:linha` se refere a esse código |
+| **[MEDIDO]** | número dos CSVs de `dados/` (rodada oficial de 2026-10-28) |
 | **[VERIFICAÇÃO]** | execução feita em 2026-10-28 numa pasta temporária, **fora** da rodada oficial (binário recompilado de `src/`) |
 | **[TEORIA]** | vale para qualquer programa concorrente (literatura de SO) |
 | **[INTERPRETAÇÃO]** | leitura nossa dos dados; plausível, mas não medida diretamente |
@@ -114,9 +132,9 @@ A sequência segue a **pirâmide** (resposta primeiro, depois as provas) aberta 
 **C. Roteiro de fala.**
 🎤 "Eu sou o Felipe Prior Mulinari. Meu tema é o Problema do Papai Noel, implementado em C11 com pthreads. A ideia que vou defender é simples: um mutex e quatro variáveis de condição bastam para coordenar o Noel, as nove renas e os elfos, respeitando todas as regras do enunciado. Vou começar pelo resumo."
 
-**D. Elementos visuais.** A faixa verde lateral é só identidade. A linha "Implementação" diz onde está o código (`tema11_papai_noel/src`) e o ambiente (GCC 15.3.1, Fedora 43, confirmado em `dados/ambiente.txt`).
+**D. Elementos visuais.** A faixa verde lateral é só identidade. A linha "Implementação" diz onde está o código (o slide ainda mostra `tema11_papai_noel/src`, caminho antigo: desde 2026-10-29 o código fica em `src/`, na raiz do projeto) e o ambiente (GCC 15.3.1, Fedora 43, confirmado em `dados/ambiente.txt`).
 
-**E. Implementação.** `tema11_papai_noel/src/`: 7 arquivos `.c` e os headers.
+**E. Implementação.** `src/`: 7 arquivos `.c` e os headers.
 
 **F. Perguntas possíveis.**
 - *"Por que C11 e não C++ ou Java?"* O enunciado do tema pede C com pthreads [NÃO VERIFICADO: o enunciado completo não está no vault; o README cita "C11 + pthreads"]. O C expõe os mecanismos POSIX diretamente, sem abstrações.
@@ -1442,7 +1460,7 @@ As perguntas **originais** do professor estão com o enunciado preservado (confo
 
 # 7. Fontes, lacunas e pontos a confirmar
 
-**Fontes usadas:** `tema11_papai_noel/src/` (todo o código lido em 2026-10-28); `dados/` (`resumo.csv`, `eventos.csv`, `espera_elfos.csv`, `tabela_esperas.csv`, `log_execucao.txt`, `teste_prioridade/`, `ingenua/`, `estresse/`, `piloto/`, `ambiente.txt`); `graficos/G1`–`G4`; `README.md`; notas do vault listadas no topo; o próprio `apresentacao_papai_noel.pptx`.
+**Fontes usadas:** `src/` (todo o código lido em 2026-10-28); `dados/` (`resumo.csv`, `eventos.csv`, `espera_elfos.csv`, `tabela_esperas.csv`, `log_execucao.txt`, `teste_prioridade/`, `ingenua/`, `estresse/`, `piloto/`, `ambiente.txt`); `graficos/G1`–`G4`; `README.md`; notas do vault listadas no topo; o próprio `apresentacao_papai_noel.pptx`.
 
 **Verificações feitas para esta versão** [VERIFICAÇÃO 2026-10-28, binário recompilado de `src/` sem warnings, saída numa pasta temporária]:
 - `--renas-ms 13` (renas durante a ajuda): ordem e tempos do slide 16.
@@ -1454,4 +1472,4 @@ As perguntas **originais** do professor estão com o enunciado preservado (confo
 - [NÃO VERIFICADO] O **tempo da apresentação**.
 - Os números de `--renas-ms 12` variam entre rodadas (esta: 12/18; a nota de fluxo: 8/22).
 - TSan e Helgrind não foram executados: a ausência de corridas é por inspeção.
-- O `slides.pptx` da v3 não está mais em `tema11_papai_noel/` (só `backup/slides_v1.pptx` e `slides_v2.pptx`); o `scripts/gerar_slides.py` (v3) ainda pode regenerá-lo.
+- O `slides.pptx` da v3 não está mais na pasta do projeto (só `backup/slides_v1.pptx` e `slides_v2.pptx`); o `scripts/gerar_slides.py` (v3) ainda pode regenerá-lo.

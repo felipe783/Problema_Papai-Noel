@@ -18,27 +18,46 @@ Ao longo do texto, as afirmações são marcadas para você saber o quanto pode 
 | **[TEORIA]** | Vale para qualquer implementação correta; vem da literatura de SO. |
 | **[IMPLEMENTAÇÃO]** | Depende de como o código foi escrito. Este guia usa uma **implementação de referência** (capítulo 6.9). **Confira no código real do grupo** e ajuste o que for diferente. |
 | **[HIPÓTESE]** | Expectativa calculada com os tempos nominais da ficha (10 ms, 1 ms, 3 ms, 5 ms). **Não é resultado medido.** Os valores reais serão um pouco diferentes. |
-| **[MEDIDO]** | Só pode vir dos CSVs das 25 execuções. Este guia não inventa nenhum número medido; onde aparecer `⟨preencher⟩`, coloque o valor do seu CSV. |
+| **[MEDIDO]** | Só pode vir dos CSVs das 25 execuções. Este guia não inventa nenhum número medido; as lacunas que existiam (`⟨preencher⟩`) foram preenchidas em 2026-10-29 com os valores medidos; os números completos estão em [[Testes e Gráficos (Papai Noel)]]. |
 
 > ⚠️ O código do grupo não foi fornecido na elaboração deste guia. Tudo que é marcado como [IMPLEMENTAÇÃO] descreve uma solução correta possível, não necessariamente a de vocês.
+
+### Referência deste guia × código real do grupo
+
+> Comparação feita no código de `src/` em 2026-10-29 [CONFIRMADO 2026-10-29]. Os conceitos ([TEORIA]) valem para os dois. Para nomes, linhas e valores, **o que vale é a coluna do código real**: detalhes em [[Sincronização no Código (Papai Noel)]] e [[Guia da Pasta src (Papai Noel)]].
+
+| Ponto | Referência deste guia (6.4, 6.9) | Código real (`src/`) |
+|---|---|---|
+| Mutex | `m`, `PTHREAD_MUTEX_INITIALIZER` (estático) | `o->mutex`, `pthread_mutex_init(&o->mutex, NULL)` em `main.c:131`, dentro da `struct Oficina` (`comum.h:82`) |
+| Variáveis de condição | **3**: `cv_noel`, `cv_elfos`, `cv_renas` | **4**: as mesmas três **e** `cv_largada`, que faz o sinal de início comum (`comum.h:83-86`, `main.c:132-139`) |
+| Espera do Noel | `pthread_cond_wait` | `pthread_cond_timedwait` com `CLOCK_MONOTONIC` (`main.c:136-139`, `noel.c:101`): prazo de segurança `--timeout-ms` |
+| Sinal de início | `aguarda_inicio_comum()` (barreira) | `esperar_largada` (`main.c:25-31`) + liberação na `main` (`main.c:207-213`); sem `pthread_barrier` |
+| Valores iniciais | contadores em 0, `grupo_em_ajuda = -1` | toda a `Oficina` zerada por `memset` (`main.c:109`); grupos por `calloc` (`main.c:116`) |
+| Renas | `renas_chegaram`, `viagem_feita` | `renas_prontas`; `viagem_iniciada` e `viagem_concluida` (`comum.h:103-105`) |
+| Grupos de elfos | "ficha" `grupo_aberto` + `vagas_ocupadas` | fila de grupos com id: `grupo_aberto`, `grupos[g].n`, `grupos_fechados` (`elfo.c:34-54`) |
+| "Há grupo pronto" | `proximo_a_atender < grupo_aberto` | `proximo_grupo < grupos_fechados` (`noel.c:90`) |
+| Grupo em ajuda | `grupo_em_ajuda` (−1 = nenhum) | `ajuda_em_curso` + `grupos[g].estado` (`noel.c:51-53`) |
+| Semáforos | não usa | **não usa** (nenhum `sem_t` em `src/`) |
+
+O roteiro de 12.1 e as respostas do capítulo 12 falam da referência. Na apresentação, use os números do código real: **1 mutex + 4 variáveis de condição**.
 
 ---
 
 ## Sumário
 
-1. [Fundamentos de concorrência, processos e threads](#1-fundamentos-de-concorrência-processos-e-threads)
-2. [Problemas de sincronização e sua relação com o SO](#2-problemas-de-sincronização-e-sua-relação-com-o-so)
-3. [Seção crítica, condição de corrida, atomicidade e dados compartilhados](#3-seção-crítica-condição-de-corrida-atomicidade-e-dados-compartilhados)
-4. [Mutex, semáforos e variáveis de condição](#4-mutex-semáforos-e-variáveis-de-condição)
-5. [Por que um `if` e um contador não substituem sincronização](#5-por-que-um-if-e-um-contador-não-substituem-sincronização)
-6. [Modelagem completa do Problema do Papai Noel](#6-modelagem-completa-do-problema-do-papai-noel)
-7. [Prioridade das renas e grupos de três elfos](#7-prioridade-das-renas-e-grupos-de-três-elfos)
-8. [Princípios de uma boa solução](#8-princípios-de-uma-boa-solução)
-9. [Starvation, deadlock, espera ocupada e outras falhas](#9-starvation-deadlock-espera-ocupada-e-outras-falhas)
-10. [Métricas, experimentos e os quatro gráficos](#10-métricas-experimentos-e-os-quatro-gráficos)
-11. [Testes funcionais e validação](#11-testes-funcionais-e-validação)
-12. [Preparação para a apresentação](#12-preparação-para-a-apresentação)
-13. [Referências](#13-referências)
+1. [[#1. Fundamentos de concorrência, processos e threads|Fundamentos de concorrência, processos e threads]]
+2. [[#2. Problemas de sincronização e sua relação com o SO|Problemas de sincronização e sua relação com o SO]]
+3. [[#3. Seção crítica, condição de corrida, atomicidade e dados compartilhados|Seção crítica, condição de corrida, atomicidade e dados compartilhados]]
+4. [[#4. Mutex, semáforos e variáveis de condição|Mutex, semáforos e variáveis de condição]]
+5. Por que um `if` e um contador não substituem sincronização
+6. [[#6. Modelagem completa do Problema do Papai Noel|Modelagem completa do Problema do Papai Noel]]
+7. [[#7. Prioridade das renas e grupos de três elfos|Prioridade das renas e grupos de três elfos]]
+8. [[#8. Princípios de uma boa solução|Princípios de uma boa solução]]
+9. [[#9. Starvation, deadlock, espera ocupada e outras falhas|Starvation, deadlock, espera ocupada e outras falhas]]
+10. [[#10. Métricas, experimentos e os quatro gráficos|Métricas, experimentos e os quatro gráficos]]
+11. [[#11. Testes funcionais e validação|Testes funcionais e validação]]
+12. [[#12. Preparação para a apresentação|Preparação para a apresentação]]
+13. [[#13. Referências|Referências]]
 
 ---
 
@@ -1315,7 +1334,7 @@ O portão força um cenário; ele **não** faz parte da solução nem da matriz.
 | Tempo | Parte | Conteúdo |
 |---|---|---|
 | ~1 min | Problema | Atores, regras R1–R8, por que é sincronização |
-| ~2 min | Solução | Mutex único + 3 variáveis de condição; ficha de grupo; decisão com renas primeiro; liberar mutex durante a tarefa; **ordem problemática da solução ingênua** |
+| ~2 min | Solução | Mutex único + variáveis de condição (**4 no código real**; a referência deste guia usa 3); grupos com id (a "ficha" da referência); decisão com renas primeiro; liberar mutex durante a tarefa; **ordem problemática da solução ingênua** |
 | ~2 min | Demonstração | Rodar a referência e o teste de prioridade; mostrar o log e a verificação das regras |
 | ~3 min | Resultados | G1–G4, hipóteses, tabela de esperas, taxa de válidas, limitações |
 
@@ -1407,7 +1426,7 @@ O mutex protege `vagas_ocupadas`. Um semáforo poderia acordar o Noel (`post` do
 **D. Possíveis questionamentos**
 1. *"Semáforo com valor 1 é igual a mutex?"* Funciona parecido, mas o mutex tem dono (dá para detectar unlock indevido) e expressa a intenção de exclusão mútua. O semáforo aceita `post` de qualquer thread, o que é útil para sinalizar, mas permite erros, como criar uma permissão a mais.
 2. *"Por que `while` e não `if` antes do `cond_wait`?"* Por causa do acordar espúrio permitido pelo POSIX, do roubo de condição entre o sinal e a retomada do mutex, e porque com `broadcast` acordam threads esperando por condições diferentes.
-3. *"Quais os valores iniciais dos seus mecanismos?"* ⟨preencher com o código⟩. Na referência: mutex destravado, variáveis de condição sem valor, contadores em 0, `grupo_em_ajuda = -1`. Num estilo Downey: `santaSem = 0`, `renaSem = 0`, `elfTex = 1`, `mutex = 1`.
+3. *"Quais os valores iniciais dos seus mecanismos?"* No código real: 1 mutex criado destravado (`main.c:131`), 4 variáveis de condição sem valor (`main.c:132-139`) e todo o estado zerado por `memset` (`main.c:109`); não há semáforos. Na referência: mutex destravado, variáveis de condição sem valor, contadores em 0, `grupo_em_ajuda = -1`. Num estilo Downey: `santaSem = 0`, `renaSem = 0`, `elfTex = 1`, `mutex = 1`.
 
 ---
 
@@ -1498,8 +1517,10 @@ Deadlock numa implementação errada: o Noel trava o mutex e chama `sem_wait(&gr
 
 ## 12.10 Pergunta 8 — Como apresentar os gráficos e interpretar os resultados
 
-**A. Resposta para a apresentação (modelo; preencher com os dados reais)**
-> "Fizemos 25 execuções: variamos o número de elfos com as renas junto, e o momento das renas com seis elfos, cinco repetições cada. ⟨preencher⟩ de 25 foram válidas. No G1, a vazão cresce com o número de elfos, de ⟨preencher⟩ para ⟨preencher⟩ pedidos por segundo, porque o custo fixo do início e da viagem é diluído; ela tende a um teto de mil por segundo, porque o Noel é um servidor serial. No G2, o p95 da espera é maior quando as renas chegam junto, ⟨preencher⟩ ms contra ⟨preencher⟩, porque o primeiro grupo fica pronto enquanto o Noel já está preparando a viagem e a ajuda não pode interromper isso. A resposta às renas ficou perto de zero, ⟨preencher⟩ ms. No G3, os dois grupos têm espera parecida. No G4, dá para ver o grupo zero ficando pronto durante a preparação e sendo atendido logo depois. Um detalhe: com até doze elfos por execução, o p95 coincide com o máximo. E a matriz quase não cria empate entre renas e elfos, por isso a prioridade foi demonstrada no teste funcional."
+**A. Resposta para a apresentação (preenchida com os dados reais)**
+> "Fizemos 25 execuções: variamos o número de elfos com as renas junto, e o momento das renas com seis elfos, cinco repetições cada. As 25 foram válidas. No G1, a vazão cresce com o número de elfos, de 163 para 436 pedidos por segundo, porque o custo fixo do início e da viagem é diluído; ela tende a um teto de mil por segundo, porque o Noel é um servidor serial. No G2, o p95 da espera é maior quando as renas chegam junto, 5,2 ms contra 2,1, porque o primeiro grupo fica pronto enquanto o Noel já está preparando a viagem e a ajuda não pode interromper isso. A resposta às renas ficou perto de zero, cerca de 0,02 ms. No G3, os dois grupos têm espera parecida. No G4, dá para ver o grupo zero ficando pronto durante a preparação e sendo atendido logo depois. Um detalhe: com até doze elfos por execução, o p95 coincide com o máximo. E a matriz quase não cria empate entre renas e elfos, por isso a prioridade foi demonstrada no teste funcional."
+
+> Números preenchidos em 2026-10-29 com a rodada que está nos slides (2026-10-28 10:08, guardada em `dados_backup/`; ver [[Testes e Gráficos (Papai Noel)]]) [CONFIRMADO 2026-10-29].
 
 **B. Entenda de verdade**
 - Hipóteses H1–H4 e de onde vêm: 10.4.
@@ -1578,5 +1599,5 @@ Se em G2 as barras de "antes" e "depois" se sobrepõem, a conclusão correta é 
 | Gráficos e métricas explicados | Cap. 10 |
 | Falhas e limitações discutidas | 6.12, 7.5, 8.3, 9.4, 10.2 |
 | Separação entre teoria, implementação, hipótese e medido | Marcas ao longo do texto |
-| Nenhum resultado numérico inventado | Valores medidos marcados como ⟨preencher⟩; expectativas marcadas como [HIPÓTESE] |
+| Nenhum resultado numérico inventado | Valores medidos vêm dos CSVs (preenchidos em 2026-10-29); expectativas marcadas como [HIPÓTESE] |
 

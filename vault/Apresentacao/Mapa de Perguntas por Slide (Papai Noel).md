@@ -4,6 +4,8 @@ Cola rápida da apresentação v4 (`apresentacao/apresentacao_papai_noel.pptx`):
 
 Índice: [[_Papai-Noel]].
 
+> ⚠️ Numeração da v4 (31 slides). O `.pptx` atual tem 22 slides (2026-10-29): veja a correspondência em [[Guia da Apresentação v4 (Papai Noel)#Correspondência com o deck atual (22 slides)]].
+
 > Extraído do roteiro v4 em 2026-10-28 [CONFIRMADO 2026-10-28]. Se os slides mudarem, regenere este mapa a partir do guia.
 
 ## Fluxo da apresentação

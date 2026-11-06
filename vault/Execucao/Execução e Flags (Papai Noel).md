@@ -4,12 +4,12 @@ Como preparar o ambiente, compilar, executar, testar, rodar os experimentos, ger
 
 > Comandos executados em 2026-10-28 (Fedora 43, GCC 15.3.1, glibc 2.42, Python 3.14.8) [CONFIRMADO 2026-10-28]. Os testes de flags foram feitos com um binário compilado numa pasta temporária, gravando em pastas temporárias, para não alterar `dados/`.
 
-Todos os caminhos abaixo partem da **raiz do projeto**: `Problema_Papai-Noel/tema11_papai_noel/` (onde estão `src/`, `scripts/`, `dados/`, `graficos/` e o `README.md`).
+Todos os caminhos abaixo partem da **raiz do projeto**: `Problema_Papai-Noel/` (até 2026-10-28, `tema11_papai_noel/`; onde estão `src/`, `scripts/`, `dados/`, `graficos/` e o `README.md`).
 
 ## 0. Resumo rápido
 
 ```bash
-cd tema11_papai_noel/src
+cd src
 gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao       # compila
 mkdir -p /tmp/papai                                            # pasta para testes manuais
 ./simulacao --elfos 6 --renas-ms 10 --out /tmp/papai/          # uma execução
@@ -33,7 +33,7 @@ bash scripts/run_experimentos.sh                               # SOBRESCREVE dad
 No Fedora, o compilador vem do pacote `gcc` (`sudo dnf install gcc`). As bibliotecas Python ficam melhor num **ambiente virtual** dentro do projeto, sem mexer no Python do sistema:
 
 ```bash
-cd tema11_papai_noel
+cd Problema_Papai-Noel                         # raiz do projeto
 python3 -m venv .venv                                  # cria o ambiente em .venv/
 .venv/bin/pip install pandas matplotlib                # o mínimo para os gráficos
 .venv/bin/pip install reportlab python-pptx            # opcional: relatório e slides
@@ -45,7 +45,7 @@ ThreadSanitizer (`-fsanitize=thread`) **não funciona** nesta máquina: o link f
 
 ## 2. Compilar
 
-**Diretório:** `tema11_papai_noel/src/`.
+**Diretório:** `src/`.
 
 ```bash
 gcc -std=c11 -O2 -Wall -Wextra -pthread *.c -o simulacao

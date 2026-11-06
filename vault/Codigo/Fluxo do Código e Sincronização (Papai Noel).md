@@ -11,7 +11,7 @@ A execução **fase a fase**, do `main()` ao último `pthread_join`, mostrando e
 
 Índice: [[_Papai-Noel]].
 
-> Código lido em 2026-10-28; as referências `arquivo:linha` são de `tema11_papai_noel/src/`. As linhas do tempo marcadas como **verificação** vêm de execuções feitas em 2026-10-28 numa pasta temporária, **fora** da rodada oficial de `dados/` [CONFIRMADO 2026-10-28]. Os tempos variam alguns µs entre execuções; a **ordem** dos eventos é o que importa.
+> Código lido em 2026-10-28; as referências `arquivo:linha` são de `src/`. As linhas do tempo marcadas como **verificação** vêm de execuções feitas em 2026-10-28 numa pasta temporária, **fora** da rodada oficial de `dados/` [CONFIRMADO 2026-10-28]. Os tempos variam alguns µs entre execuções; a **ordem** dos eventos é o que importa.
 
 ## 1. Cinco papéis que não se confundem
 

@@ -23,8 +23,8 @@ Ele é autossuficiente: dá para estudar o trabalho inteiro só com ele. As nota
 
 | Marca | Significado |
 |---|---|
-| **[CÓDIGO]** | lido em `tema11_papai_noel/src/` em 2026-10-28; as referências `arquivo:linha` são desse código |
-| **[MEDIDO]** | número lido dos CSVs de `tema11_papai_noel/dados/` (rodada de 2026-10-28) ou de uma execução de verificação feita em 2026-10-28 numa pasta temporária (indicado no texto) |
+| **[CÓDIGO]** | lido em `src/` em 2026-10-28; as referências `arquivo:linha` são desse código |
+| **[MEDIDO]** | número lido dos CSVs de `dados/` (rodada de 2026-10-28) ou de uma execução de verificação feita em 2026-10-28 numa pasta temporária (indicado no texto) |
 | **[TEORIA]** | vale para qualquer programa concorrente; vem da literatura de SO |
 | **[HIPÓTESE]** | previsão feita antes de medir, ou dedução não executada |
 | **[NÃO VERIFICADO]** | não foi possível confirmar com as fontes disponíveis |
@@ -1088,7 +1088,7 @@ Respostas completas destas sete: [[Perguntas da Apresentação (Papai Noel)]].
 
 # Parte 6. Roteiro dos 37 slides
 
-> **Fonte:** `Faculdade/slides.pptx` (37 slides, a versão v3 citada no índice), com texto e notas do apresentador extraídos em 2026-10-28. As versões anteriores estão em `tema11_papai_noel/backup/`. O `README` menciona `tema11_papai_noel/slides.pptx`, mas esse arquivo **não existe** nessa pasta: a apresentação atual está na raiz `Faculdade/`. O `Problema_Papai-Noel/slides.md` não é uma apresentação: é o texto de um pedido de revisão dos slides.
+> **Fonte:** `Faculdade/slides.pptx` (37 slides, a versão v3 citada no índice), com texto e notas do apresentador extraídos em 2026-10-28. As versões anteriores estão em `backup/` (na antiga pasta `tema11_papai_noel/`, hoje raiz do projeto). O `README` da época mencionava `tema11_papai_noel/slides.pptx`, mas esse arquivo **não existia** nessa pasta: a apresentação atual está na raiz `Faculdade/`. O `Problema_Papai-Noel/slides.md` não é uma apresentação: é o texto de um pedido de revisão dos slides.
 
 ## 6.1 Antes de tudo: o tempo
 
@@ -1341,7 +1341,7 @@ Os demais (4, 6, 13–17, 19, 20, 22, 23, 27, 28, 30, 33, 34, 37) viram material
 
 **Objetivo:** demonstrar ao vivo.
 **O que devo falar:** "Neste modo, o Noel só é liberado quando as renas e pelo menos um grupo estão prontos; isso cria a disputa de propósito, sem sleep, porque o Noel espera na própria cv_noel. [rodar] A saída mostra disputa SIM, primeira decisão renas, seis de seis elfos e zero violações: PASSOU."
-**Comando**, a partir de `tema11_papai_noel/src` (compile antes, se o binário não existir):
+**Comando**, a partir de `src/` (compile antes, se o binário não existir):
 
 ```bash
 ./simulacao --elfos 6 --renas-ms 30 --rep 1 --semente 11 --out /tmp/demo/ --teste-prioridade
@@ -1760,12 +1760,12 @@ Se você errou mais de 3, volte às Partes 1, 2 e 4 antes de ensaiar os slides.
 
 | Fonte | Local |
 |---|---|
-| Código-fonte | `Problema_Papai-Noel/tema11_papai_noel/src/` (todos os `.c` e `.h`) |
-| Scripts | `tema11_papai_noel/scripts/` (`run_experimentos.sh`, `graficos.py`; cabeçalhos de `gerar_relatorio.py` e `gerar_slides.py`) |
-| Dados | `tema11_papai_noel/dados/` (`resumo.csv`, `eventos.csv`, `espera_elfos.csv`, `tabela_esperas.csv`, `log_execucao.txt`, `ambiente.txt`, `teste_prioridade/`, `ingenua/`) |
-| Relatório | `tema11_papai_noel/relatorio.pdf` (texto extraído) |
+| Código-fonte | `Problema_Papai-Noel/src/` (todos os `.c` e `.h`) |
+| Scripts | `scripts/` (`run_experimentos.sh`, `graficos.py`; cabeçalhos de `gerar_relatorio.py` e `gerar_slides.py`) |
+| Dados | `dados/` (`resumo.csv`, `eventos.csv`, `espera_elfos.csv`, `tabela_esperas.csv`, `log_execucao.txt`, `ambiente.txt`, `teste_prioridade/`, `ingenua/`) |
+| Relatório | `relatorio.pdf` (texto extraído) |
 | Slides | `Faculdade/slides.pptx` (37 slides, texto e notas) |
-| README | `tema11_papai_noel/README.md` |
+| README | `README.md` |
 | Notas do vault | todas as listadas no topo deste guia |
 | Execuções de verificação | binário compilado à parte, saídas em pasta temporária (renas em 5, 10, 12 ×30, 13 e 30 ms; teste; ingênua; flags) |
 
@@ -1774,7 +1774,7 @@ Se você errou mais de 3, volte às Partes 1, 2 e 4 antes de ensaiar os slides.
 | Ponto | Divergência | O que vale |
 |---|---|---|
 | [[Guia de Estudo Teórico (Papai Noel)]] | foi escrito **sem** o código do grupo: usa uma "implementação de referência" (com **3** variáveis de condição e nomes como `vagas_ocupadas`, `proximo_a_atender`, "ficha"), tem lacunas `⟨preencher⟩` e um "roteiro" com "3 variáveis de condição" | o código real: **4** cond vars, `grupo_aberto`/`grupos_fechados`/`proximo_grupo`. Use o guia de estudo só para a teoria |
-| Local dos slides | o README fala em `tema11_papai_noel/slides.pptx`, que não existe | `Faculdade/slides.pptx` |
+| Local dos slides | o README da época falava em `tema11_papai_noel/slides.pptx`, que não existia | `Faculdade/slides.pptx` |
 | G3, mínimo do grupo 1 | slide e relatório: 5,09; nota de testes: 5,10 | valor real 5,095 ms; arredondamento |
 | Vazão de E12_R10 | 436,2 (nota) × 436,1 (relatório) | mesma fonte, arredondamento |
 | Slide 6 | "só uma instrução atômica resolve" | frase absoluta demais (ver 4.8) |
